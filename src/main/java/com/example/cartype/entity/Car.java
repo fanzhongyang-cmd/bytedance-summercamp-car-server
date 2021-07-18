@@ -1,15 +1,38 @@
 package com.example.cartype.entity;
 
 public class Car {
+    private int id;
     private String name;
-    private float guidePrice;
-    private float LPrice;
-    private CarSeries series;
+    private int guidePrice;
+    private int minPrice;
+    private int series;
+    private int year;
 
-    public Car(String name, float guidePrice, float LPrice, CarSeries series) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setGuidePrice(int guidePrice) {
         this.guidePrice = guidePrice;
-        this.LPrice = LPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public void setSeries(int series) {
         this.series = series;
     }
 
@@ -17,15 +40,19 @@ public class Car {
         return name;
     }
 
-    public float getGuidePrice() {
+    public int getGuidePrice() {
         return guidePrice;
     }
 
-    public float getLPrice() {
-        return LPrice;
+    public int getMinPrice() {
+        return minPrice;
     }
 
-    public CarSeries getSeries() {
+    public int getSeries() {
         return series;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

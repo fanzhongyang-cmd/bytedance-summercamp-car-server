@@ -2,5 +2,60 @@
 <!DOCTYPE mapper PUBLIC ".//mybatis.org//DTD Mapper 3.0//EN"
         "http:mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cartype.mapper.MainMapper">
-    
+    <insert id="insertUser" parameterType="user">
+        insert into user values(#{id},#{name},#{password},#{signature},#{icon})
+    </insert>
+    <select id="getUserById" resultType="user" parameterType="int">
+        select * from user where id=#{id}
+    </select>
+    <select id="getAllBrand" resultType="carBrand" >
+        select * from car_brand
+    </select>
+    <select id="getBrandSeries" resultType="carSeries" parameterType="int">
+        select *,#{param1} as brand from car_series where id in (select series_id from brand_to_series where brand_id=#{param1})
+
+    </select>
+    <select id="getSeriesCar" resultType="car" parameterType="int">
+        select *,#{param1} as series from car where id in (select car_id from series_to_car where series_id=#{param1})
+    </select>
+    <insert id="insertBook" parameterType="book">
+        insert into book values(0,#{user},#{city},#{name},#{telephone},#{time},#{state},#{car})
+    </insert>
+    <insert id="insertScore" parameterType="score">
+        insert into score values(#{user},#{series},#{score},#{time})
+    </insert>
+    <select id="getMyScore" parameterType="int" resultType="score">
+        select * from score where user=#{id}
+    </select>
+    <select id="getMyBook" parameterType="int" resultType="book">
+        select * from book where user=#{id}
+    </select>
+    <select id="getBrandById" parameterType="int" resultType="carBrand">
+        select * from car_brand where id=#{id}
+    </select>
+    <select id="getSeriesById" parameterType="int" resultType="carSeries">
+        select * from car_series where id=#{id}
+    </select>
+    <select id="getSeriesByCarId" parameterType="int" resultType="carSeries">
+        select * from car_series where id=(select series_id from series_to_car where car_id=#{id} limit 1)
+    </select>
+    <select id="getCarById" parameterType="int" resultType="car">
+        select * from car where id=#{id}
+    </select>
+    <update id="updateIcon" >
+        update user set icon=#{param2} where id=#{param1}
+    </update>
+    <select id="selectScore" parameterType="score" resultType="score">
+        select * from score where user=#{user} AND series=#{series}
+    </select>
+    <update id="updateScore" parameterType="score">
+        update score set score=#{score},time=#{time}
+    </update>
+    <update id="updateSignature" >
+        update user set signature=#{param2} where id=#{param1}
+    </update>
+
+    <select id="createBookId" resultType="car">
+        select if(count(id)=0,0,max(id)+1) from book
+    </select>
 </mapper>

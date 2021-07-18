@@ -5,37 +5,25 @@ import java.awt.*;
 import java.util.List;
 
 public class CarBrand {
-    public List<CarSeries> seriesList;
+//    public List<Integer> seriesList;
+    private int id;
     private String name;
-    private ImageIcon icon;
-//    private Image image;
+    private String icon;
+    private String letter;
 
-    public CarBrand(List<CarSeries> seriesList, String name, ImageIcon icon) {
-        this.seriesList = seriesList;
-        this.name = name;
-        this.icon = icon;
+    public String getLetter() {
+        return letter;
     }
-     public CarSeries AddSeries(CarSeries carSeries){
-        this.seriesList.add(carSeries);
-        return carSeries;
-     }
-     public CarSeries RemoveSeries(CarSeries carSeries){
-        this.seriesList.remove(carSeries);
-        return carSeries;
-     }
-     public void RemoveSeries(int index){
-        this.seriesList.remove(index);
-     }
 
-    public List<CarSeries> getSeriesList() {
-        return seriesList;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public ImageIcon getIcon() {
+    public String getIcon() {
         return icon;
     }
 
@@ -43,7 +31,17 @@ public class CarBrand {
         this.name = name;
     }
 
-    public void setIcon(ImageIcon icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public String toString() {
+        return "CarBrand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", letter='" + letter + '\'' +
+                '}';
     }
 }
